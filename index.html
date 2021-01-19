@@ -1,153 +1,25 @@
-<!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device - width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./style.css" />
-    <tite>Webcam Controls</tite>
-    <title>Gamedev Canvas Workshop</title>
-    <style>
-    	* { padding: 0; margin: 0; }
-    	canvas { background: #eee; display: block; margin: 0 auto; }          
-      #startBtn {
-        border: none;
-        background: none;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        z-index: 1;
-        transform: translate(-50%,-50%);
-        -webkit-transform: translate(-50%,-50%);
-        -moz-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-}
-    </style>
+    <title>NP-EPICS</title>
 </head>
-<body>
 
-  <div id="container">
-    <button type="button" id="startBtn" onclick=draw()><img src="startBtn.png" width="40px">
-    </button>
-<canvas id="myCanvas" width="480" height="320"></canvas>
-  </div>
-    
-
-
-<script>
-var startBtn = document.getElementById('startBtn')
-var isStart = false;
-startBtn.onclick = function() {
-    isStart = true;
-    alert("Sup!");
+<style>
+body {
+    margin: 0;
+    padding: 0;
 }
-
-if (isStart = true) {
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
-var ballRadius = 10;
-var x = canvas.width/2;
-var y = canvas.height-30;
-var dx = 2;
-var dy = -2;
-var paddleHeight = 10;
-var paddleWidth = 75;
-var paddleX = (canvas.width-paddleWidth) / 2;
-var rightPressed = false;
-var leftPressed = false;
-var keyL = "a"
-var keyR = "d"
-
-
-
-
-function drawBall() {
-    ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
-    
+body, iframe { 
+    width: 100%;
+    height: 100%;
 }
-    
-function drawPaddle() {
-    ctx.beginPath();
-    ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
+iframe {
+    border: 0;
 }
-
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
-    
-    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-        dx = -dx;
-    }
-    if(y + dy < ballRadius) {
-    dy = -dy;
-} else if(y + dy > canvas.height-ballRadius) {
-    if(x > paddleX && x < paddleX + paddleWidth) {
-        dy = -dy;
-    }
-    else {
-        alert("GAME OVER");
-        document.location.reload();
-        clearInterval(interval);
-    }
-}
-    
-    x += dx;
-    y += dy;
-    drawPaddle();
-    if(rightPressed) {
-    paddleX += 7;
-    if (paddleX + paddleWidth > canvas.width){
-        paddleX = canvas.width - paddleWidth;
-    }
-}
-else if(leftPressed) {
-    paddleX -= 7;
-    if (paddleX < 0){
-        paddleX = 0;
-    }
-}    
-}
-//THE CONTROL MECHANISMS
-document.addEventListener("keydown", keyDownHandler, false);
-document.addEventListener("keyup", keyUpHandler, false);
-function keyDownHandler(e) {
-    if(e.key == "Right" || e.key == "ArrowRight" || e.key == keyR) {
-        rightPressed = true;
-    }
-    else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == keyL) {
-        leftPressed = true;
-    }
-}
-
-function keyUpHandler(e) {
-    if(e.key == "Right" || e.key == "ArrowRight" || e.key == keyR) {
-        rightPressed = false;
-    }
-    else if(e.key == "Left" || e.key == "ArrowLeft" || e.key == keyL) {
-        leftPressed = false;
-    }
-}
-var interval = setInterval(draw, 10);
-
-}
-
-</script>
+</style>
 
 <body>
-    <video id="video" width="320" height="240" ></video>
-    <div class="notes">
-        <h3>Left</h3>
-        <h3>Right</h3>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/handtrackjs/dist/handtrack.min.js"> </script>
-    <script src="app.js"></script>
-    </body>
+    <iframe src="https://mdsiam8.github.io/epics_site/"/>
 </body>
+
 </html>
